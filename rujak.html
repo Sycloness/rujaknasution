@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rujak Asam Manis Nasution</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-yellow: #FFD54F; 
+            --accent-pink: #FF4081;    
+            --text-dark: #37474F;
+            --white: #ffffff;
+        }
+
+        /* Animasi Pulse untuk Tombol Pesan Sekarang */
+        @keyframes pulse-animation {
+            0% {
+                box-shadow: 0 0 0 0px rgba(255, 64, 129, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(255, 64, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0px rgba(255, 64, 129, 0);
+            }
+        }
+
+        .btn-pulse {
+            animation: pulse-animation 2s infinite;
+            /* Menjaga agar tombol tetap terlihat menonjol */
+            border: 2px solid white !important; 
+        }
+
+        .btn-pulse:hover {
+            animation: none; /* Berhenti berdenyut saat kursor di atasnya */
+            transform: scale(1.1);
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .navbar-brand, .btn {
+            font-family: 'Fredoka', sans-serif; 
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            padding: 15px 0;
+            transition: 0.3s;
+        }
+        .navbar-brand img {
+            border: 2px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0 10px;
+        }
+        .nav-link:hover {
+            color: var(--accent-pink) !important;
+        }
+        .btn-wa-nav {
+            background: var(--accent-pink);
+            color: white;
+            border-radius: 50px;
+            padding: 8px 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 64, 129, 0.4);
+            border: none;
+            text-decoration: none;
+        }
+        .btn-wa-nav:hover {
+            background: #e91e63;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* --- Header / Hero Section --- */
+        .header-section {
+            background-color: var(--primary-yellow);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* DIUBAH: Padding ditambah agar konten tidak tertutup navbar */
+            padding-top: 140px; 
+            padding-bottom: 150px; 
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+
+        .btn-hero {
+            background: white;
+            color: var(--accent-pink);
+            font-weight: 700;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .btn-hero:hover {
+            transform: translateY(-5px);
+            background: #fff;
+            color: #d81b60;
+        }
+
+        .hero-stats {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 30px;
+            color: white;
+            display: inline-flex;
+            gap: 30px;
+        }
+
+        .wave-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-bottom svg {
+            position: relative;
+            display: block;
+            width: calc(130% + 1.3px);
+            height: 150px;
+        }
+
+        /* --- Section Styling --- */
+        .section-title {
+            color: var(--accent-pink);
+            font-weight: 700;
+            margin-bottom: 50px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Menu Cards --- */
+        .menu-item {
+            text-align: center;
+            transition: 0.3s;
+            margin-bottom: 40px;
+        }
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+        .menu-img-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .menu-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .price-badge {
+            background: var(--primary-yellow);
+            color: var(--text-dark);
+            font-weight: bold;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        /* --- Maps --- */
+        .map-frame {
+            border-radius: 30px;
+            border: 10px solid white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* --- Footer --- */
+        .footer-section {
+            position: relative;
+            color: white;
+            padding-top: 150px;
+        }
+        .footer-desc{
+            padding-bottom: 50px;
+            background-color: var(--accent-pink);
+        }
+        .social-icon {
+            font-size: 2.5rem;
+            color: white;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .social-icon:hover {
+            color: var(--primary-yellow);
+            transform: rotate(15deg);
+        }
+
+        .bottom-nav-link {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: 600;
+        }
+        .bottom-nav-link:hover {
+            color: white;
+        }
+
+        .about-img-frame {
+            position: relative;
+            display: inline-block;
+            padding: 15px;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border: 2px solid var(--primary-yellow);
+        }
+
+        .about-img-frame img {
+            border-radius: 20px;
+            border: 5px solid var(--primary-yellow);
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+ /* --- Testimonials Light Style (Carousel) --- */
+.testi-section {
+    background-color: var(--primary-yellow); /* Mengikuti warna kuning webmu */
+    padding: 80px 0;
+    position: relative;
+}
+
+.testi-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.testi-card-light {
+    background: white;
+    border-radius: 30px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    margin: 15px;
+    border-bottom: 8px solid var(--accent-pink); /* Aksen Pink */
+}
+
+.testi-card-light .quote-icon {
+    font-size: 2.5rem;
+    color: var(--accent-pink);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.testi-card-light p {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(45deg, var(--accent-pink), #ff80ab);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Penyesuaian Indikator (Titik-titik di bawah) */
+.carousel-indicators {
+    bottom: -60px !important;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--accent-pink) !important;
+}
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top" style="background: rgba(255, 213, 79, 0.95); backdrop-filter: blur(5px);">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="gambar/Oranye Merah Ilustrasi Rujak Asinan Stiker.png" alt="Logo" width="45" height="45" class="rounded-circle me-2">
+                <span class="d-none d-sm-inline fw-bold text-white">Nasution</span>
+            </a>
+            <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list fs-1"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#beranda">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#tentang">Tentang</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#menu">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#lokasi">Lokasi</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#kontak">Kontak</a></li>
+                </ul>
+                <a href="https://wa.me/6285760356942" class="btn-wa-nav bg-white text-danger">
+                    <i class="bi bi-whatsapp"></i> Order
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="beranda" class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="badge bg-white text-warning mb-3 px-3 py-2 rounded-pill shadow-sm">Rujak Viral Medan!</span>
+                    <h1 class="hero-title mb-4">Kesegaran Buah <br> Bumbu <span style="color: var(--accent-pink);">Legendaris</span></h1>
+                    <p class="text-white fs-5 mb-4">Nikmati sensasi pedas manis yang bikin nagih setiap hari.</p>
+                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="https://wa.me/6285760356942" class="btn-hero btn-pulse">
+                            <i class="bi bi-whatsapp"></i> Pesan Sekarang
+                        </a>
+                        <a href="#menu" class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold border-2">
+                            Lihat Menu
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="text-center">
+                            <h3 class="m-0 fw-bold">100%</h3>
+                            <small>Fresh Fruit</small>
+                        </div>
+                        <div class="border-end border-light opacity-50"></div>
+                        <div class="text-center">
+                            <h3 class="m-0 fw-bold">5k+</h3>
+                            <small>Pelanggan</small>
+                        </div>
+                        <div class="border-end border-light opacity-50"></div>
+                        <div class="text-center">
+                            <h3 class="m-0 fw-bold">4.9</h3>
+                            <small>Rating</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="zoom-in" data-aos-duration="1500">
+                    <img src="gambar/desain beranda.png" class="img-fluid rounded-circle shadow-lg border border-5 border-white" alt="Rujak Hero">
+                </div>
+            </div>
+        </div>
+    </header>
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FFD54F"></path>
+    </svg>
+
+    <section id="tentang" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6 mb-5 mb-md-0" data-aos="fade-right">
+                    <div class="text-center">
+                        <div class="about-img-frame">
+                            <img src="gambar/foto.png" alt="Rujak Asam Manis Nasution" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-6" data-aos="fade-left">
+                    <div class="ps-md-4 text-center text-md-start">
+                        <h2 class="section-title text-md-start mb-4">Tentang Kami</h2>
+                        <p class="fs-5 fw-light text-muted" style="line-height: 1.8;">
+                            " <strong class="text-warning">Rujak Asam Manis Nasution</strong> menghadirkan perpaduan rasa segar dari buah-buahan pilihan dengan bumbu khas yang diracik secara turun-temurun. 
+                        </p>
+                        <p class="fs-5 fw-light text-muted" style="line-height: 1.8;">
+                            Sensasi asam yang menyegarkan berpadu sempurna dengan manis dan pedas yang pas, menjadikan setiap suapan terasa nikmat dan bikin ketagihan. "
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-down">Menu Buah Segar</h2>
+            <div class="row">
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/semangka.jpeg" alt="Semangka">
+                        </div>
+                        <h4 class="fw-bold mb-1">Semangka</h4>
+                        <p class="small text-muted mb-2">Merah, berair, dan sangat menghidrasi.</p>
+                        <span class="price-badge">Manis & Segar</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/pepaya.jpeg" alt="Pepaya">
+                        </div>
+                        <h4 class="fw-bold mb-1">Pepaya</h4>
+                        <p class="small text-muted mb-2">Tekstur lembut dengan nutrisi tinggi.</p>
+                        <span class="price-badge">Kaya Vitamin</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/nenas.jpeg" alt="Nenas">
+                        </div>
+                        <h4 class="fw-bold mb-1">Nenas</h4>
+                        <p class="small text-muted mb-2">Sensasi asam manis tropis yang kuat.</p>
+                        <span class="price-badge">Asam Manis</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/melon.jpeg" alt="Melon">
+                        </div>
+                        <h4 class="fw-bold mb-1">Melon</h4>
+                        <p class="small text-muted mb-2">Aroma harum dengan rasa manis elegan.</p>
+                        <span class="price-badge">Manis Alami</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/Mango.jpeg" alt="Mangga">
+                        </div>
+                        <h4 class="fw-bold mb-1">Mangga</h4>
+                        <p class="small text-muted mb-2">Daging buah tebal dan bumbu meresap.</p>
+                        <span class="price-badge">Favorit!</span>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="menu-item">
+                        <div class="menu-img-wrapper">
+                            <img src="gambar/belimbing.jpeg" alt="Belimbing">
+                        </div>
+                        <h4 class="fw-bold mb-1">Belimbing</h4>
+                        <p class="small text-muted mb-2">Renyah dan segar di setiap gigitan.</p>
+                        <span class="price-badge">Khas Rujak</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="testimoni" class="testi-section">
+    <div class="container">
+        <h2 class="section-title" style="color: var(--text-dark);" data-aos="fade-down">Apa Kata Mereka?</h2>
+        
+        <div id="testiCarousel" class="carousel slide testi-container" data-bs-ride="carousel" data-aos="zoom-in">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#testiCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#testiCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#testiCarousel" data-bs-slide-to="2"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="testi-card-light">
+                        <i class="bi bi-chat-quote-fill quote-icon"></i>
+                        <p>"Bumbu rujaknya beda banget sama yang lain, kental dan kacangnya berasa banget. Buahnya juga selalu segar!"</p>
+                        <div class="stars mb-3" style="color: #FFB300;">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="user-info text-start">
+                                <h5 class="mb-0 fw-bold">Kak Sarah</h5>
+                                <small class="text-muted">Pelanggan Setia</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="testi-card-light">
+                        <i class="bi bi-chat-quote-fill quote-icon"></i>
+                        <p>"Sering beli buat acara kantor, responnya cepat dan porsinya pas. Mangga mudanya juara banget!"</p>
+                        <div class="stars mb-3" style="color: #FFB300;">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="user-info text-start">
+                                <h5 class="mb-0 fw-bold">Bang Rian</h5>
+                                <small class="text-muted">Medan Deli</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="testi-card-light">
+                        <i class="bi bi-chat-quote-fill quote-icon"></i>
+                        <p>"Level pedasnya bisa request, bumbunya bener-bener nagih. Favorit keluarga setiap weekend."</p>
+                        <div class="stars mb-3" style="color: #FFB300;">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="user-info text-start">
+                                <h5 class="mb-0 fw-bold">Ibu Maya</h5>
+                                <small class="text-muted">Ibu Rumah Tangga</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon d-none d-md-inline-block" style="filter: invert(1);"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testiCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon d-none d-md-inline-block" style="filter: invert(1);"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+                <div class="carousel-item">
+                    <div class="testi-card-dark">
+                        <i class="bi bi-quote quote-icon"></i>
+                        <p>"Level pedasnya pas banget, buah nenas sama mangganya bener-bener seger. Pengiriman cepat dan porsinya melimpah!"</p>
+                        <div class="stars mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar text-white">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div class="user-info text-start">
+                                <h5>Sarah Ananda</h5>
+                                <span>Ibu Rumah Tangga</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <div class="testi-card-dark">
+                        <i class="bi bi-quote quote-icon"></i>
+                        <p>"Udah langganan dari dulu. Bumbu kacangnya itu loh, gak pelit dan rasanya konsisten dari dulu sampe sekarang. Juara!"</p>
+                        <div class="stars mb-3">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                        <div class="user-profile">
+                            <div class="user-avatar text-white">
+                                <i class="bi bi-person-fill"></i>
+                            </div>
+                            <div class="user-info text-start">
+                                <h5>Rian Pratama</h5>
+                                <span>Karyawan Swasta</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#testiCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon opacity-50"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testiCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon opacity-50"></span>
+            </button>
+        </div>
+    </div>
+</section>
+
+    <section id="lokasi" class="py-5 bg-white">
+        <div class="container">
+            <h2 class="section-title">Lokasi Lapak</h2>
+            <div class="row align-items-center">
+                <div class="col-md-5 mb-4 text-center text-md-start" data-aos="fade-right">
+                    <h3 class="fw-bold mb-3">Mampir Yuk!</h3>
+                    <p class="fs-5"><i class="bi bi-geo-alt-fill text-danger"></i> Seberang STMIK Triguna Dharma, Medan.</p>
+                    <p class="text-muted">Buka setiap hari jam 10.00 - 16.00 WIB</p>
+                </div>
+                <div class="col-md-7" data-aos="flip-left">
+                    <div class="map-frame">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.2016570057663!2d98.65762757363622!3d3.5408910506224536!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131000c15a455%3A0xa643be1695cd903c!2sRujak%20Asam%20Manis!5e0!3m2!1sid!2sid!4v1771083363830!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontak" class="footer-section text-center">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" style="transform: rotate(180deg);">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#FF4081"></path>
+        </svg>
+
+        <div class="container-fluid relative-z footer-desc" data-aos="fade-up">
+            <h2 class="mb-5 display-4 fw-bold">Hubungi Kami</h2>
+            
+            <a href="https://wa.me/6285760356942" class="btn btn-light text-danger btn-lg rounded-pill px-5 py-3 fw-bold mb-5 shadow">
+                <i class="bi bi-whatsapp"></i> Chat WhatsApp 0857-6035-6942
+            </a>
+
+            <div class="d-flex justify-content-center mb-5">
+                <a href="https://www.instagram.com/rujakbuah93?igsh=b2c2YWkyY3hrMGJn" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.tiktok.com/@rujak_asam_manis" target="_blank" class="social-icon"><i class="bi bi-tiktok"></i></a>
+            </div>
+
+            <div class="border-top border-white border-opacity-25 pt-4">
+                <div class="d-flex justify-content-center flex-wrap mb-3">
+                    <a href="#beranda" class="bottom-nav-link">Beranda</a>
+                    <a href="#tentang" class="bottom-nav-link">Tentang</a>
+                    <a href="#menu" class="bottom-nav-link">Menu</a>
+                    <a href="#lokasi" class="bottom-nav-link">Lokasi</a>
+                </div>
+                <p class="small opacity-75">© 2024 Rujak Asam Manis Nasution. Dibuat dengan penuh rasa cinta.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+</body>
+</html>
